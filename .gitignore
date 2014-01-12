@@ -1,0 +1,9 @@
+.bundle/
+.librarian/
+.tmp/
+modules/apt/
+modules/locales/
+modules/ntp/
+modules/ramdisk/
+modules/stdlib/
+modules/vcsrepo/
