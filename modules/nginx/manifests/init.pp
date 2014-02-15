@@ -62,9 +62,28 @@ class nginx {
   } ->
 
   file { '/etc/nginx/h5bp':
-    ensure => link,
-    target => '/opt/server-configs-nginx/h5bp',
-  }
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root',
+    #target => '/opt/server-configs-nginx/h5bp',
+  } ->
+
+  exec { 'copy h5bp nginx config':
+    command     => 'cp -r . /etc/nginx/h5bp/',
+    cwd         => '/opt/server-configs-nginx/h5bp/directive-only',
+    path        => $::path,
+    subscribe   => Vcsrepo['/opt/server-configs-nginx'],
+    refreshonly => true,
+  } ->
+
+  exec { 'fix nginx static log':
+    command     => 'sed -i "\,access_log logs/static.log;,d" expires.conf',
+    cwd         => '/etc/nginx/h5bp/location',
+    path        => $::path,
+    subscribe   => Exec['copy h5bp nginx config'],
+    refreshonly => true,
+    notify      => Service['nginx'],
+  } ->
 
   service { 'nginx':
     ensure     => running,
