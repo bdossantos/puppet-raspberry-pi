@@ -18,6 +18,9 @@ server {
   # Custom 404 page
   error_page 404 /404.html;
 
+  access_log /var/log/nginx/runner.sh.access.log combined;
+  error_log /var/log/nginx/runner.sh.error.log;
+
   # Include the basic h5bp config set
   include h5bp/basic.conf;
 }
