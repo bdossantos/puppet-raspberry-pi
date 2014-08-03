@@ -66,7 +66,7 @@ node base {
   cron { 'save log to hd':
     command => '/usr/bin/rsync -za /var/log/ /var/log.hd/',
     user    => 'root',
-    minute  => '*/15',
+    special => 'daily',
     require => Package['rsync'],
   }
 
