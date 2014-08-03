@@ -1,31 +1,25 @@
 FORGE
   remote: http://forge.puppetlabs.com
   specs:
-    puppetlabs/apt (1.4.0)
+    puppetlabs/apt (1.5.2)
       puppetlabs/stdlib (>= 2.2.1)
-    puppetlabs/ntp (3.0.1)
-      puppetlabs/stdlib (>= 0.1.6)
-    puppetlabs/stdlib (4.1.0)
-    puppetlabs/vcsrepo (0.2.0)
+    puppetlabs/ntp (3.1.2)
+      puppetlabs/stdlib (>= 4.0.0)
+    puppetlabs/stdlib (4.3.2)
+    puppetlabs/vcsrepo (1.1.0)
+    saz/locales (2.1.0)
 
 GIT
   remote: https://github.com/bdossantos/puppet-module-ramdisk
   ref: master
   sha: e2e08e231cce1fda060dd9173e0f96ea703eaf2a
   specs:
-    ramdisk (0.0.1)
-
-GIT
-  remote: https://github.com/saz/puppet-locales.git
-  ref: master
-  sha: d7635ceb20c792714bf4986b191bbe7ce8ec8746
-  specs:
-    locales (2.0.0)
+    bdossantos/ramdisk (0.0.1)
 
 DEPENDENCIES
-  locales (>= 0)
+  bdossantos/ramdisk (>= 0)
   puppetlabs/apt (>= 0)
   puppetlabs/ntp (>= 0)
   puppetlabs/vcsrepo (>= 0)
-  ramdisk (>= 0)
+  saz/locales (>= 0)
 
