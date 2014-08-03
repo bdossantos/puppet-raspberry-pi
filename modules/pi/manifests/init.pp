@@ -23,27 +23,4 @@ class pi {
     source      => "/usr/local/src/node-v${node_version}/bin/npm",
     destination => '/usr/local/bin/npm',
   }
-
-  file { '/var/log.hd':
-    ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0744',
-  }
-
-  mount { '/var/log':
-    ensure  => mounted,
-    device  => 'tmpfs',
-    fstype  => 'tmpfs',
-    options => "size=256M,mode=0744,uid=root,gid=root",
-    atboot  => true,
-  }
-
-  cron { 'restore log.hd at boot':
-    command => 'rsync -za /var/log.hd /var/log'
-  }
-
-  cron { 'sync log to hd':
-    command => 'nice -n 15 ionice -c 3 rsync -za /var/log /var/log.hd',
-  }
 }
