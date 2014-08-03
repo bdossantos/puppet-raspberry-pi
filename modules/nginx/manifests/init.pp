@@ -5,19 +5,8 @@ class nginx {
     mode  => '0644',
   }
 
-  apt::source { 'nginx':
-    location => 'http://nginx.org/packages/debian/',
-    release  => 'wheezy',
-    repos    => 'nginx',
-  } ->
-
-  apt::key { 'nginx':
-    key_source => 'http://nginx.org/keys/nginx_signing.key',
-  } ->
-
   package { 'nginx':
     ensure  => latest,
-    #require => Apt::source['nginx'],
   } ->
 
   file { '/var/log/nginx':
