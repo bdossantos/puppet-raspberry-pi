@@ -46,7 +46,7 @@ class nginx {
     ensure   => latest,
     provider => 'git',
     source   => 'https://github.com/h5bp/server-configs-nginx.git',
-    revision => 'master',
+    revision => 'fc610f495a26a78a4221ce662a81d486b4c4b70b',
     require  => Package['nginx'],
   } ->
 
@@ -59,7 +59,7 @@ class nginx {
 
   exec { 'copy h5bp nginx config':
     command     => 'cp -r . /etc/nginx/h5bp/',
-    cwd         => '/opt/server-configs-nginx/h5bp/directive-only',
+    cwd         => '/opt/server-configs-nginx/h5bp',
     path        => $::path,
     subscribe   => Vcsrepo['/opt/server-configs-nginx'],
     refreshonly => true,
