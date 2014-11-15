@@ -15,6 +15,10 @@ server {
 
   charset utf-8;
 
+  location ~* \.html {
+    expires 1d;
+  }
+
   # Custom 404 page
   error_page 404 /404.html;
 
