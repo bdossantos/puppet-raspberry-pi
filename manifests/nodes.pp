@@ -64,14 +64,14 @@ node base {
   }
 
   cron { 'save log to hd':
-    command => '/usr/bin/rsync -za /var/log/ /var/log.hd/',
+    command => '/usr/bin/rsync -za --delete /var/log/ /var/log.hd/',
     user    => 'root',
     special => 'daily',
     require => Package['rsync'],
   }
 
   cron { 'restore hd log to tmpfs':
-    command => '/usr/bin/rsync -za /var/log.hd/ /var/log/',
+    command => '/usr/bin/rsync -za --delete /var/log.hd/ /var/log/',
     user    => 'root',
     special => 'reboot',
     require => Package['rsync'],
