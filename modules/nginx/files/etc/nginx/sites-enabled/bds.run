@@ -1,0 +1,30 @@
+server {
+  listen 80;
+
+  server_name runner.sh *.runner.sh www.bds.run;
+
+  return 301 $scheme://bds.run$request_uri;
+}
+
+server {
+  listen 80;
+
+  server_name bds.run;
+
+  root /srv/http/bds.run;
+
+  charset utf-8;
+
+  location ~* \.html {
+    expires 1d;
+  }
+
+  # Custom 404 page
+  error_page 404 /404.html;
+
+  access_log /var/log/nginx/bds.run.access.log combined;
+  error_log /var/log/nginx/bds.run.error.log;
+
+  # Include the basic h5bp config set
+  include h5bp/basic.conf;
+}
